@@ -90,8 +90,8 @@ public final class UpdateChecker {
             final String updateMessage = getUpdateMessage(this.modId);
             if (updateMessage != null) {
                 try {
-                    final ITextComponent component = ITextComponent.Serializer.fromJson(updateMessage);
-                    event.getPlayer().sendMessage(component);
+                    final ITextComponent component = ITextComponent.Serializer.func_240643_a_(updateMessage);
+                    event.getPlayer().sendMessage(component, event.getPlayer().getUniqueID());
                 } catch (@Nonnull final Throwable t) {
                     t.printStackTrace();
                 }

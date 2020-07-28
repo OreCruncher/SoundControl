@@ -20,7 +20,7 @@ package org.orecruncher.lib;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
@@ -104,7 +104,7 @@ public class EnvironmentBlockReader implements IEnviromentBlockReader {
 
     @Nonnull
     @Override
-    public IFluidState getFluidState(@Nonnull final BlockPos pos) {
+    public FluidState getFluidState(@Nonnull final BlockPos pos) {
         return getBlockState(pos).getFluidState();
     }
 

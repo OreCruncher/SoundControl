@@ -203,7 +203,7 @@ public final class WorldUtils {
     }
 
     public static boolean hasVoidPartiles(@Nonnull final World world) {
-        return world.getWorldType() != WorldType.FLAT && world.getDimension().hasSkyLight();
+        return world.getWorldType() != WorldType.FLAT && world.func_230315_m_().hasSkyLight();
     }
 
 }
