@@ -78,8 +78,8 @@ public class Inspector {
                                                 final BlockPos pos) {
 
         if (!stack.isEmpty()) {
-            text.add(TextFormatting.RED + stack.getDisplayName().getFormattedText());
-            final String itemName = stack.getItem().getName().getFormattedText();
+            text.add(TextFormatting.RED + stack.getDisplayName().getString());
+            final String itemName = stack.getItem().getName().getString();
             if (!StringUtils.isEmpty(itemName)) {
                 text.add("ITEM: " + itemName);
                 text.add(TextFormatting.DARK_AQUA + stack.getItem().getClass().getName());

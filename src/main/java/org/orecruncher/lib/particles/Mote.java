@@ -40,7 +40,7 @@ public abstract class Mote implements IParticleMote {
     protected double posX;
     protected double posY;
     protected double posZ;
-    protected final BlockPos.MutableBlockPos position = new BlockPos.MutableBlockPos();
+    protected final BlockPos.Mutable position = new BlockPos.Mutable();
 
     protected int slX16;
     protected int blX16;

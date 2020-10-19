@@ -21,7 +21,7 @@ package org.orecruncher.lib;
 import com.google.common.collect.AbstractIterator;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 
 import javax.annotation.Nonnull;
 
@@ -39,11 +39,11 @@ public final class BlockPosUtil {
      * @return BlockPos with coordinates
      */
     public static BlockPos getNonOffsetPos(@Nonnull final Entity entity) {
-        return new BlockPos(entity.posX, entity.posY, entity.posZ);
+        return new BlockPos(entity.getPosX(), entity.getPosY(), entity.getPosZ());
     }
 
-    public static BlockPos.MutableBlockPos setPos(@Nonnull final BlockPos.MutableBlockPos pos,
-                                                  @Nonnull final Vec3d vec) {
+    public static BlockPos.Mutable setPos(@Nonnull final BlockPos.Mutable pos,
+                                                  @Nonnull final Vector3d vec) {
         return pos.setPos(vec.x, vec.y, vec.z);
     }
 
@@ -104,10 +104,10 @@ public final class BlockPosUtil {
      * array.  The iteration favors moving along the x axis, followed by z, and then y.  In general this will cause
      * the chunk array to be scanned in a linear fashion.
      */
-    public static Iterable<BlockPos.MutableBlockPos> getAllInBoxMutable(@Nonnull final BlockPos from, @Nonnull final BlockPos to) {
+    public static Iterable<BlockPos.Mutable> getAllInBoxMutable(@Nonnull final BlockPos from, @Nonnull final BlockPos to) {
         final BlockPos minPos = createMinPoint(from, to);
         final BlockPos maxPos = createMaxPoint(from, to);
-        return () -> new AbstractIterator<BlockPos.MutableBlockPos>() {
+        return () -> new AbstractIterator<BlockPos.Mutable>() {
 
             private final int minX = minPos.getX();
             private final int minY = minPos.getY();
@@ -116,7 +116,7 @@ public final class BlockPosUtil {
             private final int maxY = maxPos.getY();
             private final int maxZ = maxPos.getZ();
 
-            private BlockPos.MutableBlockPos currentPos;
+            private BlockPos.Mutable currentPos;
             private int currentX = minX;
             private int currentY = minY;
             private int currentZ = minZ;
@@ -126,9 +126,9 @@ public final class BlockPosUtil {
             }
 
             @Override
-            protected BlockPos.MutableBlockPos computeNext() {
+            protected BlockPos.Mutable computeNext() {
                 if (this.currentPos == null) {
-                    this.currentPos = new BlockPos.MutableBlockPos(minX, minY, minZ);
+                    this.currentPos = new BlockPos.Mutable(minX, minY, minZ);
                     return this.currentPos;
                 } else if (isEndFinished()) {
                     return endOfData();

@@ -177,13 +177,13 @@ public final class SoundFXProcessor {
         // Double suplex!  Queue the operation on the sound executor to do the config work.  This should queue in
         // behind any attempt at getting a sound source.
         entry.runOnSoundExecutor(source -> {
-            if (!isCategoryIgnored(sound.getCategory()) && source.field_216441_b > 0) {
+            if (!isCategoryIgnored(sound.getCategory()) && source.id > 0) {
                 final SourceContext ctx = new SourceContext();
                 ctx.attachSound(sound);
                 ctx.enable();
                 ctx.exec();
                 sndctrl_context.set(source, ctx);
-                sources[source.field_216441_b - 1] = ctx;
+                sources[source.id - 1] = ctx;
             }
         });
     }
@@ -197,7 +197,7 @@ public final class SoundFXProcessor {
     public static void tick(@Nonnull final SoundSource source) {
         final SourceContext ctx = sndctrl_context.get(source);
         if (ctx != null)
-            ctx.tick(source.field_216441_b);
+            ctx.tick(source.id);
     }
 
     /**
@@ -208,7 +208,7 @@ public final class SoundFXProcessor {
     public static void stopSoundPlay(@Nonnull final SoundSource source) {
         final SourceContext ctx = sndctrl_context.get(source);
         if (ctx != null)
-            sources[source.field_216441_b - 1] = null;
+            sources[source.id - 1] = null;
     }
 
     /**
@@ -218,7 +218,7 @@ public final class SoundFXProcessor {
      * @return true if the sound is considered playing; false otherwise
      */
     public static boolean isPlaying(@Nonnull final SoundSource source) {
-        final int state = source.func_216428_j();
+        final int state = source.getState();
         return /*state == AL10.AL_INITIAL ||*/ state == AL10.AL_PLAYING;
     }
 

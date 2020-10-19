@@ -151,7 +151,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     compile fg.deobf("com.github.glitchfiend.biomesoplenty:BiomesOPlenty:${mcVersion}-${project.bopVersion}:universal")
-    compile fg.deobf("com.github.glitchfiend.biomesoplenty:SereneSeasons:${mcVersion}-${project.ssVersion}:universal")
+    //compile fg.deobf("com.github.glitchfiend.biomesoplenty:SereneSeasons:${mcVersion}-${project.ssVersion}:universal")
 
     runtimeOnly fg.deobf("mezz.jei:jei-${mcVersion}:${project.jeiVersion}")
 
